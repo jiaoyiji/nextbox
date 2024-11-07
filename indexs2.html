@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/new_file.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/new_file2.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			body,
+			html {
+				position: relative;
+			}
+			.mui-icon-bars:before {
+				content: '\e563';
+				color: red;
+			}
+			.mui-btn-blue, .mui-btn-primary, input[type=submit] {
+			    color: #fff;
+			    border: 0px solid #ff0000;
+			    background-color: #ff0000;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
+			    background-color:  rgba(0,0,0,0);
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+			    color: #f00;
+			    border-bottom: 2px solid #f00;
+			    background: #fff;
+			}
+			.mui-control-item{
+				background-color: #fff;
+			}
+			.mui-btn-blue.mui-active:enabled, .mui-btn-blue:enabled:active, .mui-btn-primary.mui-active:enabled, .mui-btn-primary:enabled:active, input[type=submit].mui-active:enabled, input[type=submit]:enabled:active {
+			    color: #fff;
+			    border: 1px solid #f00;
+			    background-color: #f00;
+			}
+			.mui-popover .mui-popover-arrow:after {
+			    position: absolute;
+			    top: 19px;
+			    left: 0;
+			    width: 26px;
+			    height: 26px;
+			    content: ' ';
+			    -webkit-transform: rotate(45deg);
+			    transform: rotate(45deg);
+			    border-radius: 3px;
+			    background: #f7f7f7;
+			}
+			.active{
+				color: red;
+			}
+			.active::after{
+				content: '';
+				position: absolute;
+				color: red;
+				bottom: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				border-bottom: 3px solid red;
+				width: 6vw;
+			}
+			input[type=text]{
+			    line-height: 21px;
+			    width: 70%;
+			    height: 40px;
+			    margin-bottom: 15px;
+			    padding: 10px 15px;
+			    -webkit-user-select: text;
+			    border: 1px solid rgba(0, 0, 0, 0);
+			    border-radius: 3px;
+			    outline: 0;
+				margin-left: 50%;
+				transform: translate(-50%,0%);
+			    background-color: rgba(0,0,0,0);
+			    -webkit-appearance: none;
+				border-bottom:1px solid #bcbcc2 ;
+			}
+			.backdrop {
+			    position: fixed;
+			    top: 0;
+			    right: 0;
+			    bottom: 0;
+			    left: 0;
+			    z-index: 10;
+			    background-color: rgba(0,0,0,.3);
+			}
+			.backdrp{
+				position: fixed;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				z-index: 10;
+				background-color: rgba(0,0,0,0);
+			}
+			.mui-table-view-cell>.mui-slider-left>.mui-btn:after, .mui-table-view-cell>.mui-slider-right>.mui-btn:after {
+			    position: absolute;
+			    z-index: -2;
+			    top: 0;
+			    width: 600%;
+			    height: 100%;
+			    content: '';
+			    background: inherit;
+			    margin-left: 600%;
+			}
+			.mui-table-view:before {
+			    position: absolute;
+			    right: 0;
+			    left: 0;
+			    height: 0px;
+			    content: '';
+			    -webkit-transform: scaleY(.5);
+			    transform: scaleY(.5);
+			    background-color: #c8c7cc;
+			    top: -1px;
+			}
+			.mui-table-view:after {
+			    position: absolute;
+			    right: 0;
+			    bottom: 0;
+			    left: 0;
+			    height: 0px;
+			    content: '';
+			    -webkit-transform: scaleY(.5);
+			    transform: scaleY(.5);
+			    background-color: #c8c7cc;
+			}
+			.mui-scroll {
+			    position: absolute;
+			    z-index: 100;
+			    width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="p1">
+			<!-- 缩放式侧滑（类手机QQ） -->
+			<!-- 侧滑导航根容器 -->
+			<div class="mui-off-canvas-wrap mui-draggable mui-scalable" style="height: 100vh;">
+				<!-- 菜单容器 -->
+				<aside class="mui-off-canvas-left mui-transitioning" id="offCanvasSide">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll" style="width: 100%;height: 100vh;color: #fff;">
+							<div class="user" style="display: flex;justify-content: center;margin-top: 10%;flex-wrap: wrap;">
+								
+							</div>
+							<div class="href" style="margin-left: 15%;margin-top: 20%;line-height: 35px;">
+								<div class="home" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									首页
+								</div>
+								<div class="xxxd" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									学习心得
+								</div>
+								<div class="gyhd" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									公益活动
+								</div>
+								<div class="sjfx" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									数据分析
+								</div>
+							</div>
+							<div class="offdom" style="display: flex;color: red;width: 50%;margin-left: 30%;margin-top: 15%;font-weight: 600;">
+								<div class="setdom" style="width: 50%;">
+									设置
+								</div>
+								<div class="backdom" style="width: 50%;">
+									退出
+								</div>
+							</div>
+						</div>
+					</div>
+				</aside>
+				<!-- 主页面容器 -->
+				<div class="mui-inner-wrap mui-transitioning">
+					<div class="">
+						<!-- 主页面标题 -->
+						<header class="mui-bar mui-bar-nav header" id="studything" style="">
+							<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide"></a>
+							<h1 class="mui-title" style="font-size: 23px;font-weight: 600;text-align: left;">学习心得</h1>
+							<button type="button" class="mui-btn mui-btn-blue addactive" style="margin-left: 70vw;width: 20vw;border-radius: 20vw;">新增感言</button>
+							<div class="toptab" style="width: 110%;background-color: #fff;z-index: 3;display: flex;text-align: center;height: 10vw;line-height: 10vw;color: #888;margin-left: -2vw;">
+								<div class="toptableft" style="width: 50%;position: relative;">
+									<div class="active" style="width: auto;margin-left: 50%;transform: translateX(-50%);">
+										学习感言
+									</div>
+								</div>
+								<div class="toptabright" style="width: 50%;position: relative;">
+									<div class="" style="width: auto;margin-left: 50%;transform: translateX(-50%);">
+										学习历史
+									</div>
+								</div>
+							</div>
+						</header>
+						<div class="mui-content mui-scroll-wrapper wrapp">
+							<div class="mui-scroll">
+								<div class="studything" style="margin-top: 12vw;">
+									<div class="tabtext">
+										<div class="tabtextleft">
+											<div class="mui-input-row mui-search" style="width: 80%;margin-left: 10%;margin-top: 3%;">
+												<input type="search" class="mui-input-clear" placeholder="搜索" id="sear">
+											</div>
+											<div class="studythingtext" style="height: auto;">
+												
+											</div>
+										</div>
+										<div class="tabtextright" style="display: none;">
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="referbigbox" style="z-index: 100;">
+							<div class="referbox" style="background-color: #00ffff;position: absolute;z-index: 990;bottom: 0;width: 100%;transform: translateY(150%);">
+								<div class="referboxTab" style="width: 100%;display: flex;justify-content: space-between;padding:2vw;height: 10vw;z-index: 990;">
+									<h2 class="" style="font-size: 23px;font-weight: 600;text-align: center;padding-left: 50vw;transform: translateX(-20%);">编辑笔记</h2>
+									<button type="button" class="mui-btn mui-btn-blue referboxBtn" style="width: 14vw;border-radius: 20vw;">提交</button>
+								</div>
+								<div class="referboxtext">
+									<input type="text" class="referboxVal1" placeholder="标题" style="margin: 40px 50%;" maxlength="20"/>
+									<input type="text" class="referboxVal2" placeholder="内容" style="margin: 40px 50% 5px 50%;" maxlength="20"/>
+									<div class="referboxLength" style="text-align: right;width: 70%;margin-left: 15%;margin-bottom: 100px;">
+										剩余可输入：20字
+									</div>
+								</div>
+							</div>
+							<div class="backdrop" style="display: none;"></div>
+						</div>
+						<div class="isdeletebox" style="display: none;">
+							<div class="isdelete" style="width: 100%;z-index: 999;width: 80%;background-color: #00ffff;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);display: flex;flex-wrap: wrap;border-radius: 5vw;">
+								<div class="" style="width: 100%;text-align: center;margin-top: 15%;">
+									您确定要删除吗？
+								</div>
+								<div class="agedeletebox" style="display: flex;width: 70%;margin-left: 15%;margin: 15%;">
+									<div class="agedelete" style="width: 50%;text-align: center;">
+										删除
+									</div>
+									<div class="notdelete" style="width: 50%;text-align: center;">
+										取消
+									</div>
+								</div>
+							</div>
+							<div class="backdrp"></div>
+						</div>
+						<div class="editnotebox" style="z-index: 100;">
+							<div class="editnotesmbox" style="background-color: #00ffff;position: absolute;z-index: 990;bottom: 0;width: 100%;transform: translateY(150%);">
+								<div class="editnotetab" style="width: 100%;display: flex;justify-content: space-between;padding:2vw;height: 10vw;z-index: 990;">
+									<h2 class="" style="font-size: 23px;font-weight: 600;text-align: center;padding-left: 50vw;transform: translateX(-20%);">学习心得</h2>
+									<button type="button" class="mui-btn mui-btn-blue editnoteBtn" style="width: 14vw;border-radius: 20vw;">提交</button>
+								</div>
+								<div class="editnotetext">
+									<input type="text" class="editnoteVal1" placeholder="标题" style="margin: 40px 50%;" maxlength="20"/>
+									<input type="text" class="editnoteVal2" placeholder="内容" style="margin: 40px 50% 5px 50%;" maxlength="20"/>
+									<div class="editnoteLength" style="text-align: right;width: 70%;margin-left: 15%;margin-bottom: 100px;">
+										剩余可输入：20字
+									</div>
+								</div>
+							</div>
+							<div class="backdrop" style="display: none;"></div>
+						</div>
+						<div class="editnotebox2" style="z-index: 100;">
+							<div class="editnotesmbox2" style="background-color: #00ffff;position: absolute;z-index: 990;bottom: 0;width: 100%;transform: translateY(150%);">
+								<div class="editnotetab2" style="width: 100%;display: flex;justify-content: space-between;padding:2vw;height: 10vw;z-index: 990;">
+									<h2 class="" style="font-size: 23px;font-weight: 600;text-align: center;padding-left: 50vw;transform: translateX(-20%);">学习心得</h2>
+									<button type="button" class="mui-btn mui-btn-blue editnoteBtn2" style="width: 14vw;border-radius: 20vw;">提交</button>
+								</div>
+								<div class="editnotetext2">
+									<input type="text" class="editnoteVal12" placeholder="标题" style="margin: 40px 50%;" maxlength="20"/>
+									<input type="text" class="editnoteVal22" placeholder="内容" style="margin: 40px 50% 5px 50%;" maxlength="20"/>
+									<div class="editnoteLength2" style="text-align: right;width: 70%;margin-left: 15%;margin-bottom: 100px;">
+										剩余可输入：20字
+									</div>
+								</div>
+							</div>
+							<div class="backdrop" style="display: none;"></div>
+						</div>
+					</div>
+					<div class="mui-off-canvas-backdrop" style="z-index: 999;"></div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			// window.onload = function() {
+			    
+			// }
+			/////////////顶部tab栏
+			$('#studything').on('tap','.toptableft',function (){
+				if($(this).hasClass('toptableft')){
+					$(this).siblings().children().removeClass('active')
+					$(this).children().addClass('active')
+					$(this).parents('.header').siblings('.wrapp').find('.tabtextleft').show()
+					$(this).parents('.header').siblings('.wrapp').find('.tabtextright').hide()
+					$('.addactive').show()
+				}
+			})
+			$('#studything').on('tap','.toptabright',function (){
+				if($(this).hasClass('toptabright')){
+					$(this).siblings().children().removeClass('active')
+					$(this).children().addClass('active')
+					$(this).parents('.header').siblings('.wrapp').find('.tabtextright').show()
+					$(this).parents('.header').siblings('.wrapp').find('.tabtextleft').hide()
+					$('.addactive').hide()
+				}
+			})
+			////////////////取消搜索框聚焦
+			$(document).on('tap',function(data){
+				if(!data.target.closest('#sear')){
+					$('#sear').blur()
+				}
+			})
+			////////////////学习感言
+			$('.tabtextleft').on('tap',`.taptab`,function(){
+				if($(this).parent().siblings()[0].style.display == 'none'){
+					$(this).parent().siblings().slideToggle(100)
+				}else{
+					$(this).parent().siblings().slideToggle(100)
+				}
+			})
+			function intbox(){
+				mui.ajax(url + '/prod-api/api/testimonials/list', {
+					headers,
+					success: function(data) {
+						const arr = data.rows
+						list = ''
+						mui.each(arr,function(data,item){
+							list += `<div class="" style="width: 80%;margin-left: 10%;margin-top: 5%;">
+										<div class="" style="display: flex;justify-content: space-between;">
+											<div class="">
+												${item.title}
+											</div>
+											<div class="mui-icon mui-icon-arrowright" style="font-weight: 600;"></div>
+										</div>
+										<div class="mui-ellipsis-2" style="overflow-wrap: break-word;margin-top: 1%;font-size:14px;color:#777;margin:3px 0;">
+											${item.content}
+										</div>
+										<div style="margin-left: 85%;">
+											<div class="" style="display: flex;justify-content: end;">
+												<button type="button" class="mui-btn mui-btn-blue taptab" style="border-radius: 15vw;width: 15vw;margin-top: 2px;">更多</button>
+											</div>
+											<div class="showtab" style="position: relative;margin-left: 50%;transform: translate(-50%);display: none;">
+												<div class="" style="width: 4em;margin-left: -1.1em;z-index: 223;text-align: center;padding-top: 0.7em;">
+													<div class="backst" style="background-color: #fff;z-index: 223;padding: 1em;" data-arr="${item.id}">
+														删除
+													</div>
+													<div class="" style="background-color: #fff;z-index: 223;padding: 1em;">
+														更多
+													</div>
+												</div>
+												<div class="" style="width: 25px;height: 25px;background-color: #fff;transform: rotate(45deg);z-index: 11;position: absolute;top: 0;"></div>
+											</div>
+										</div>
+									</div>`
+							
+						})
+						$('.studythingtext').html(list)
+					}
+				})
+			}
+			intbox()
+			$('.referboxtext').on('input','.referboxVal2',function(){
+				let referboxVal2 = $('.referboxVal2').val().length
+				let num = 20 - 	referboxVal2
+				$('.referboxLength').html(`剩余可输入：${num}字`)
+			}) 
+			let getnum = 0
+			function hidemask(){
+				$('.referbox').css('transform','translateY(150%)')
+				$('.referboxVal1').val('')
+				$('.referboxVal2').val('')
+				$('.referboxLength').html(`剩余可输入：20字`)
+				getnum++
+			}
+			$('.mui-bar-nav').on('tap','.addactive',function(){
+				getnum++
+				if(getnum%2===0){
+					$('.referbox').css('transform','translateY(150%)')
+				}else{
+					$('.backdrop').show()
+					$('.referbox').css('transform','translateY(0)')
+					$('.referbox').css('transition','all 1s')
+				}
+			}) 
+			$('.referbigbox').on('tap','.backdrop',function(){
+				$('.backdrop').hide()
+				hidemask()
+			}) 
+			$('.studythingtext').on('tap','.backst',function(){
+				let brr = $(this).data('arr')
+				$('.isdeletebox').show()
+				$('.agedeletebox').on('tap','.agedelete',function(){
+					mui.ajax(url+`/prod-api/api/testimonials/${brr}`,{
+						type:'delete',
+						headers,
+						success:function(data){
+							console.log(data);
+							intbox()
+							$('.isdeletebox').hide()
+						}
+					})
+				}) 
+				$('.agedeletebox').on('tap','.notdelete',function(){
+					$('.isdeletebox').hide()
+				}) 
+			}) 
+			$('.referbigbox').on('tap','.referboxBtn',function(){
+				const title = $('.referboxVal1').val()
+				const content = $('.referboxVal2').val()
+				if(title !== '' && content !== ''){
+					mui.toast('添加成功')
+					$('.backdrop').hide()
+					hidemask()
+				}else{
+					mui.toast('请输入完整的标题和内容')
+					return
+				}
+				mui.ajax(url+'/prod-api/api/testimonials',{
+					type:'post',
+					headers,
+					data:{
+						title,
+						content
+					},
+					success:function(data){
+						intbox()
+					}
+				})
+			}) 
+			//////////////学习历史
+			function intnote(){
+				mui.ajax(url + '/prod-api/api/common/user/getInfo', {
+					headers,
+					success: function(data) {
+						const arr = data.data
+						const userId = data.data.userId
+						trans(userId)
+						list = ''
+						list += `<div class="" style="width: 100%;margin-left: 50%;">
+										<div class="" style="width: 25vw;height: 25vw;overflow: hidden;border-radius: 25vw;transform: translate(-50%);">
+											<img src="${myimg}${arr.avatar}" style="width: 100%;" >
+										</div>
+									</div>
+									<div class="" style="margin-top: 5%;">
+										${arr.nickName}
+									</div>`
+						$('.user').html(list)
+					}
+				})
+				function trans(id){
+					mui.ajax(url+`/prod-api/api/history/list?userId=${id}`,{
+						type:'get',
+						headers,
+						success:function(data){
+							const arr = data.rows
+							list = ''
+							$.each(arr,function(data,item){
+								if(item.wstudyNote){
+									list += `<ul id="" class="mui-table-view" style="margin: 1vw 0;background-color: rgba(0,0,0,0);">
+												<li class="mui-table-view-cell">
+													<div class="mui-slider-left mui-disabled" style="height: 100%;">
+														<div class="mui-btn mui-btn-green deletenote" style="display: flex;height: 100%;flex-wrap: wrap;flex-direction: column;justify-content: center;" data-noteid='${item.wstudyNote.noteId}' data-sid='${item.wstudyNote.studyHistoryId}'>
+															<div style="width: 100%;">删除</div>
+															<div style="width: 100%;">笔记</div>
+														</div>
+														<div class="mui-btn mui-btn-red editnote" style="display: flex;height: 100%;flex-wrap: wrap;flex-direction: column;justify-content: center;" data-noteId= '${item.wstudyNote.noteId}'>
+															<div style="width: 100%;">编辑</div>
+															<div style="width: 100%;">笔记</div>
+														</div>
+													</div>
+													<div class="mui-slider-right mui-disabled">
+														<div class="mui-btn mui-btn-red addnote" style="display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;" data-sid='${item.wstudyNote.studyHistoryId}' data-ids='${item.id}'>
+															<div style="width: 100%;">添加</div>
+															<div style="width: 100%;">笔记</div>
+														</div>
+													</div>
+													<div class="mui-slider-handle" style="background-color: rgba(0,0,0,0);color: #000000;">
+														<h4 class="mui-ellipsis">
+															${item.title}
+														</h4>
+														<div class="mui-ellipsis" style="margin: 2vw 0;">
+															${item.content}
+														</div>
+														<div class="mui-ellipsis" style="margin: 2vw 0;color:#444">
+															笔记：${item.wstudyNote.noteContent}
+														</div>
+													</div>
+												</li>
+											</ul>`
+								}else{
+									list += `<ul id="" class="mui-table-view" style="margin: 1vw 0;background-color: rgba(0,0,0,0);">
+												<li class="mui-table-view-cell">
+													<div class="mui-slider-left mui-disabled" style="height: 100%;">
+														<div class="mui-btn mui-btn-green deletenote" style="display: flex;height: 100%;flex-wrap: wrap;flex-direction: column;justify-content: center;">
+															<div style="width: 100%;">删除</div>
+															<div style="width: 100%;">笔记</div>
+														</div>
+														<div class="mui-btn mui-btn-red editnote" style="display: flex;height: 100%;flex-wrap: wrap;flex-direction: column;justify-content: center;">
+															<div style="width: 100%;">编辑</div>
+															<div style="width: 100%;">笔记</div>
+														</div>
+													</div>
+													<div class="mui-slider-right mui-disabled">
+														<div class="mui-btn mui-btn-red addnote" style="display: flex;flex-wrap: wrap;flex-direction: column;justify-content: center;" data-ids='${item.id}'>
+															<div style="width: 100%;">添加</div>
+															<div style="width: 100%;">笔记</div>
+														</div>
+													</div>
+													<div class="mui-slider-handle" style="background-color: rgba(0,0,0,0);color: #000000;">
+														<h4 class="mui-ellipsis">
+															${item.title}
+														</h4>
+														<div class="mui-ellipsis" style="margin: 2vw 0;">
+															${item.content}
+														</div>
+													</div>
+												</li>
+											</ul>`
+								}
+								
+							})
+							$('.tabtextright').html(list)
+						}
+					})
+				}
+			}
+			intnote()
+			$('.tabtextright').on('tap','.deletenote',function(){
+				let id = $(this).data('noteid')
+				let sid = $(this).data('sid')
+				mui.ajax(url+`/prod-api/api/history/note?noteId=${id}&studyHistoryId=${sid}`,{
+					type:'delete',
+					headers,
+					success:function(){
+						intnote()
+					}
+				})
+			})
+			let getnum2 = 1
+			function hidebox(){
+				$('.editnotesmbox').css('transform','translateY(150%)')
+				$('.editnoteVal1').val('')
+				$('.editnoteVal2').val('')
+				$('.backdrop').hide()
+				getnum2++
+			}
+			$('.backdrop').on('tap',function(){
+				hidebox()
+				hidebox2()
+			})
+			$('.tabtextright').on('tap','.editnote',function(){
+				let noteId = $(this).data('noteid')
+				getnum2++
+				if(getnum%2===0){
+					$('.backdrop').show()
+					$('.editnotesmbox').css('transform','translateY(0)')
+					$('.editnotesmbox').css('transition','all 1s')
+				}
+				$('.editnotebox').off('tap', '.editnoteBtn');
+				$('.editnotebox').on('tap','.editnoteBtn',function(){
+					$('.editnoteBtn').prop('disabled',true)
+					const noteTitle = $('.editnoteVal1').val()
+					const noteContent = $('.editnoteVal2').val()
+					if(noteTitle !== '' && noteContent !== ''){
+						mui.toast('编辑成功')
+						$('.backdrop').hide()
+						hidebox()
+						console.log(noteId);
+						console.log(noteTitle);
+						console.log(noteContent);
+					}else{
+						$('.editnoteBtn').prop('disabled',false)
+						mui.toast('请输入完整的标题和内容')
+						return
+					}
+					mui.ajax(url+`/prod-api/api/history/note`,{
+						type:'put',
+						headers,
+						data:{
+							noteId,
+							noteTitle,
+							noteContent
+						},
+						success:function(data){
+							$('.editnoteBtn').prop('disabled',false)
+							intnote()
+						}
+					})
+				})
+			})
+			function hidebox2(){
+				$('.editnotesmbox2').css('transform','translateY(150%)')
+				$('.editnoteVal12').val('')
+				$('.editnoteVal22').val('')
+				$('.backdrop').hide()
+				getnum2++
+			}
+			$('.editnotetext2').on('input','.editnoteVal22',function(){
+				let editnoteVal2 = $('.editnoteVal22').val().length
+				let num = 20 - 	editnoteVal2
+				$('.editnoteLength2').html(`剩余可输入：${num}字`)
+			}) 
+			$('.tabtextright').on('tap','.addnote',function(data){
+				const studyHistoryId = $(this).data('ids')
+				getnum2++
+				if(getnum%2===0){
+					$('.backdrop').show()
+					$('.editnotesmbox2').css('transform','translateY(0)')
+					$('.editnotesmbox2').css('transition','all 1s')
+				}
+				$('.editnotebox2').off('tap', '.editnoteBtn2');
+				$('.editnotebox2').on('tap','.editnoteBtn2',function(){
+					const noteTitle = $('.editnoteVal12').val()
+					const noteContent = $('.editnoteVal22').val()
+					$('.editnoteBtn2').prop('disabled',true)
+					if(noteTitle !== '' && noteContent !== ''){
+						$('.backdrop').hide()
+						hidebox2()
+					}else{
+						$('.editnoteBtn2').prop('disabled',false)
+						mui.toast('请输入完整的标题和内容')
+						return
+					}
+					mui.ajax(url+'/prod-api/api/history/note',{
+						type:'post',
+						headers,
+						data:{
+							noteTitle,
+							noteContent,
+							studyHistoryId
+						},
+						success:function(data){
+							$('.editnoteBtn2').prop('disabled',false)
+							intnote()
+							if(data.code === 500){
+								mui.toast(`${data.msg}`)
+							}else{
+								mui.toast('编辑成功')
+							}
+						}
+					})
+				})
+			})
+			//////////////侧导航跳转事件
+			$('.href').on('tap','.home',function(){
+				mui.openWindow('indexs1.html','html1')
+			}) 
+			$('.href').on('tap','.xxxd',function(){
+				mui.openWindow('indexs2.html','html2')
+			}) 
+			$('.href').on('tap','.gyhd',function(){
+				mui.openWindow('indexs3.html','html3')
+			}) 
+			$('.href').on('tap','.sjfx',function(){
+				mui.openWindow('indexs4.html','html4')
+			}) 
+			$('.offdom').on('tap','.setdom',function(){
+				mui.openWindow('indexsz.html','htmlsz')
+			}) 
+			$('.offdom').on('tap','.backdom',function(){
+				mui.plusReady(function(){
+					plus.runtime.quit()
+				})
+			}) 
+			mui('.wrapp').scroll()	
+		</script>
+	</body>
+</html>

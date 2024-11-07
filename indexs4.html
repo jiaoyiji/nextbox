@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/new_file.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/new_file2.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/echarts.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			body,
+			html {
+				position: relative;
+			}
+			.mui-icon-bars:before {
+				content: '\e563';
+				color: red;
+			}
+			.mui-btn-blue, .mui-btn-primary, input[type=submit] {
+			    color: #fff;
+			    border: 0px solid #ff0000;
+			    background-color: #ff0000;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
+			    background-color:  rgba(0,0,0,0);
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+			    color: #f00;
+			    border-bottom: 2px solid #f00;
+			    background: #fff;
+			}
+			.mui-control-item{
+				background-color: #fff;
+			}
+			.mui-btn-blue.mui-active:enabled, .mui-btn-blue:enabled:active, .mui-btn-primary.mui-active:enabled, .mui-btn-primary:enabled:active, input[type=submit].mui-active:enabled, input[type=submit]:enabled:active {
+			    color: #fff;
+			    border: 1px solid #f00;
+			    background-color: #f00;
+			}
+			.mui-popover .mui-popover-arrow:after {
+			    position: absolute;
+			    top: 19px;
+			    left: 0;
+			    width: 26px;
+			    height: 26px;
+			    content: ' ';
+			    -webkit-transform: rotate(45deg);
+			    transform: rotate(45deg);
+			    border-radius: 3px;
+			    background: #f7f7f7;
+			}
+			.active{
+				color: red;
+			}
+			.active::after{
+				content: '';
+				position: absolute;
+				color: red;
+				bottom: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				border-bottom: 3px solid red;
+				width: 6vw;
+			}
+			input[type=text]{
+			    line-height: 21px;
+			    width: 70%;
+			    height: 40px;
+			    margin-bottom: 15px;
+			    padding: 10px 15px;
+			    -webkit-user-select: text;
+			    border: 1px solid rgba(0, 0, 0, 0);
+			    border-radius: 3px;
+			    outline: 0;
+				margin-left: 50%;
+				transform: translate(-50%,0%);
+			    background-color: rgba(0,0,0,0);
+			    -webkit-appearance: none;
+				border-bottom:1px solid #bcbcc2 ;
+			}
+			.backdrop {
+			    position: fixed;
+			    top: 0;
+			    right: 0;
+			    bottom: 0;
+			    left: 0;
+			    z-index: 10;
+			    background-color: rgba(0,0,0,.3);
+			}
+			.backdrp{
+				position: fixed;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				z-index: 10;
+				background-color: rgba(0,0,0,0);
+			}
+			.mui-table-view-cell>.mui-slider-left>.mui-btn:after, .mui-table-view-cell>.mui-slider-right>.mui-btn:after {
+			    position: absolute;
+			    z-index: -2;
+			    top: 0;
+			    width: 600%;
+			    height: 100%;
+			    content: '';
+			    background: inherit;
+			    margin-left: 600%;
+			}
+			.mui-table-view:before {
+			    position: absolute;
+			    right: 0;
+			    left: 0;
+			    height: 0px;
+			    content: '';
+			    -webkit-transform: scaleY(.5);
+			    transform: scaleY(.5);
+			    background-color: #c8c7cc;
+			    top: -1px;
+			}
+			.mui-table-view:after {
+			    position: absolute;
+			    right: 0;
+			    bottom: 0;
+			    left: 0;
+			    height: 0px;
+			    content: '';
+			    -webkit-transform: scaleY(.5);
+			    transform: scaleY(.5);
+			    background-color: #c8c7cc;
+			}
+			.mui-scroll {
+			    position: absolute;
+			    z-index: 100;
+			    width: 100%;
+			}
+			.chart{
+				width: 90vw;
+				margin-left: 5vw;
+			}
+			.charts{
+				width: 100%;
+				height: 350px;
+				margin: 30px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="p1" style="">
+			<!-- 缩放式侧滑（类手机QQ） -->
+			<!-- 侧滑导航根容器 -->
+			<div class="mui-off-canvas-wrap mui-draggable mui-scalable" style="height: 100vh;">
+				<!-- 菜单容器 -->
+				<aside class="mui-off-canvas-left mui-transitioning" id="offCanvasSide">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll" style="width: 100%;height: 100vh;color: #fff;">
+							<div class="user" style="display: flex;justify-content: center;margin-top: 10%;flex-wrap: wrap;">
+								
+							</div>
+							<div class="href" style="margin-left: 15%;margin-top: 20%;line-height: 35px;">
+								<div class="home" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									首页
+								</div>
+								<div class="xxxd" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									学习心得
+								</div>
+								<div class="gyhd" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									公益活动
+								</div>
+								<div class="sjfx" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									数据分析
+								</div>
+							</div>
+							<div class="offdom" style="display: flex;color: red;width: 50%;margin-left: 30%;margin-top: 15%;font-weight: 600;">
+								<div class="setdom" style="width: 50%;">
+									设置
+								</div>
+								<div class="backdom" style="width: 50%;">
+									退出
+								</div>
+							</div>
+						</div>
+					</div>
+				</aside>
+				<!-- 主页面容器 -->
+				<div class="mui-inner-wrap mui-transitioning">
+					<div class="">
+						<!-- 主页面标题 -->
+						<header class="mui-bar mui-bar-nav header" id="studything" style="">
+							<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide"></a>
+							<h1 class="mui-title" style="font-size: 23px;font-weight: 600;text-align: center;">chart (数据分析)</h1>
+						</header>
+						<div class="mui-content mui-scroll-wrapper wrapp">
+							<div class="mui-scroll">
+								<div class="chart">
+									<div class="column charts">
+										
+									</div>
+									<div class="pile charts">
+										
+									</div>
+									<div class="line charts">
+										
+									</div>
+									<div class="dot charts">
+										
+									</div>
+									<div class="pie charts">
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					<div class="mui-off-canvas-backdrop" style="z-index: 999;color: ;"></div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			// window.onload = function() {
+			    
+			// }
+			/////////////柱状图
+			// 柱状图基础配置
+			var columnOption = {
+			    legend: { // 展示系列的标记
+			        data: ['男性评论数','女性评论数'],
+			        left:"center",
+			    },
+			    grid:{  
+			        show:true
+			    },
+			    xAxis: {
+			        type: 'category',
+			        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+			        splitLine:{ show: true }, //x轴网格线
+			    },
+			    yAxis: {
+			        type: 'value',
+			        // min:0,
+			        // max:1000
+			    },
+			    series: [{
+			        name: ['男性评论数'],
+			        data: ['33', '43', '77', '77', '77', '77', '77', '77', '77', '77', '77', '77'],//柱状图1的y轴数据
+			        type: 'bar'
+			    },
+			    {
+			        name: '女性评论数',
+			        data: ['22', '33', '55', '55', '55', '55', '55', '55', '55', '55', '55', '55'],//柱状图2的y轴数据
+			        type: 'bar'
+			    }
+			  ]
+			}
+			var pileOption = {
+			  color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
+			  // title: {
+			  //   text: 'Gradient Stacked Area Chart'
+			  // },
+			  tooltip: {
+			    trigger: 'axis',
+			    axisPointer: {
+			      type: 'cross',
+			      label: {
+			        backgroundColor: '#6a7985'
+			      }
+			    }
+			  },
+			  legend: {
+			    data: ['男性评论数','女性评论数']
+			  },
+			  // toolbox: {
+			  //   feature: {
+			  //     saveAsImage: {}
+			  //   }
+			  // },
+			  grid: {
+			    left: '3%',
+			    right: '4%',
+			    bottom: '3%',
+			    containLabel: true
+			  },
+			  xAxis: [
+			    {
+			      type: 'category',
+			      boundaryGap: false,
+			      data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+			    }
+			  ],
+			  yAxis: [
+			    {
+			      type: 'value'
+			    }
+			  ],
+			  series: [
+			    {
+			      name: '男性评论数',
+			      type: 'line',
+			      stack: 'Total',
+			      smooth: true,
+			      lineStyle: {
+			        width: 0
+			      },
+			      showSymbol: false,
+			      areaStyle: {
+			        opacity: 0.8,
+			        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+			          {
+			            offset: 0,
+			            color: 'rgb(128, 255, 165)'
+			          },
+			          {
+			            offset: 1,
+			            color: 'rgb(1, 191, 236)'
+			          }
+			        ])
+			      },
+			      emphasis: {
+			        focus: 'series'
+			      },
+			      data: ['33', '43', '77', '77', '77', '77', '77', '77', '77', '77', '77', '77']
+			    },
+			    {
+			      name: '女性评论数',
+			      type: 'line',
+			      stack: 'Total',
+			      smooth: true,
+			      lineStyle: {
+			        width: 0
+			      },
+			      showSymbol: false,
+			      areaStyle: {
+			        opacity: 0.8,
+			        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+			          {
+			            offset: 0,
+			            color: 'rgb(0, 221, 255)'
+			          },
+			          {
+			            offset: 1,
+			            color: 'rgb(77, 119, 255)'
+			          }
+			        ])
+			      },
+			      emphasis: {
+			        focus: 'series'
+			      },
+			      data: ['22', '33', '55', '55', '55', '55', '55', '55', '55', '55', '55', '55']
+			    },
+			  ]
+			};
+			mui.ajax(url+'/prod-api/api/data/comment/list_2',{
+				headers,
+				success:function(data){
+					const column = echarts.init(document.querySelector('.column'))
+					column.setOption(columnOption)
+					const pile = echarts.init(document.querySelector('.pile'))
+					pile.setOption(pileOption)
+				}
+			})
+			//////////////线性图
+			
+			var lineOption = {
+			    legend:{
+			        data:'用户阅读量趋势',
+			        left: 'center',
+			    },
+			    xAxis: {
+			        splitLine: { 
+			            show: true
+			        },
+			        type: 'category',
+			        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+			    },
+			    yAxis: {
+			        // min: 0,// 最小值
+			        // interval: 10, // 步长
+			        // max:100,// 最大值
+			        type: 'value'
+			    },
+			    series: [{
+			        name:'用户阅读量趋势',
+			        data: ['185', '154', '172', '159', '172', '175', '176', '182', '174', '169', '173', '165'],// y轴坐标
+			        type: 'line'
+			    }]
+			}
+			var dotOption = {
+			  xAxis: {
+					splitLine: { 
+			            show: true
+			        },
+			        type: 'category',
+			        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+					},
+			  yAxis: {},
+			  series: [
+			    {
+			      symbolSize: 18,
+			      data: [
+			        [0, 185],
+			        [1, 154],
+			        [2, 172],
+			        [3, 159],
+			        [4, 172],
+			        [5, 175],
+			        [6, 176],
+			        [7, 182],
+			        [8, 174],
+			        [9, 169],
+					[10, 173],
+					[11, 165],
+			      ],
+			      type: 'scatter'
+			    }
+			  ]
+			};
+			mui.ajax(url+'/prod-api/api/read/book/list_1',{
+				headers,
+				success:function(data){
+					const line = echarts.init(document.querySelector('.line'))
+					line.setOption(lineOption)
+					const dot = echarts.init(document.querySelector('.dot'))
+					dot.setOption(dotOption)
+				}
+			})
+			////////////饼状图
+			var pieOption = {
+			    // color:['red','green'],
+			    tooltip: {
+			        trigger: 'item'
+			    },
+			    legend: {
+			        bottom: '0',
+			        left: 'center',
+			        icon:'circle',
+			        data: ['']
+			    },
+			    series: [{
+			        type: 'pie',
+			        radius: '45%',// 饼图半径
+			        label: {
+			            normal: {
+			                show: true,
+			                formatter: '{d}%',// 显示格式
+			            }
+			        },
+			        data: [{
+			                value: '',
+			                name: ''
+			            },
+			            {
+			                value: '',
+			                name: ''
+			            },
+						{
+						    value: '',
+						    name: ''
+						},
+						{
+						    value: '',
+						    name: ''
+						},
+						{
+						    value: '',
+						    name: ''
+						},
+						{
+						    value: '',
+						    name: ''
+						},
+			        ],
+			    }]
+			}
+			mui.ajax(url+'/prod-api/api/read/book/list/type_1',{
+				headers,
+				success:function(data){
+					const arr = data.data
+					console.log(arr);
+					pieOption.legend.data = arr.name
+					const err = pieOption.series[0].data
+					for(var i = 0 ; i < arr.name.length ; i++){
+						err[i].name = arr.name[i]
+						err[i].value = arr.count[i]
+					}
+					const pie = echarts.init(document.querySelector('.pie'))
+					pie.setOption(pieOption)
+				}
+			})
+			if(localStorage.getItem('columnss')){
+				console.log(localStorage.getItem('columnss'));
+				if(localStorage.getItem('columnss') === '1'){
+					$('.pile').show()
+					$('.column').hide()
+				}else{
+					$('.column').show()
+					$('.pile').hide()
+				}
+			}else{
+					$('.column').show()
+					$('.pile').hide()
+			}
+			if(localStorage.getItem('liness')){
+				console.log(localStorage.getItem('liness'));
+				if(localStorage.getItem('liness') === '1'){
+					console.log(localStorage.getItem('columnss'));
+					$('.line').hide()
+					$('.dot').show()
+				}else{
+					$('.line').show()
+					$('.dot').hide()
+				}
+			}else{
+					$('.line').show()
+					$('.dot').hide()
+			}
+			//////////////用户
+			function intnote(){
+				mui.ajax(url + '/prod-api/api/common/user/getInfo', {
+					headers,
+					success: function(data) {
+						const arr = data.data
+						const userId = data.data.userId
+						list = ''
+						list += `<div class="" style="width: 100%;margin-left: 50%;">
+										<div class="" style="width: 25vw;height: 25vw;overflow: hidden;border-radius: 25vw;transform: translate(-50%);">
+											<img src="${myimg}${arr.avatar}" style="width: 100%;" >
+										</div>
+									</div>
+									<div class="" style="margin-top: 5%;">
+										${arr.nickName}
+									</div>`
+						$('.user').html(list)
+					}
+				})
+			}
+			intnote()
+			//////////////侧导航跳转事件
+			$('.href').on('tap','.home',function(){
+				mui.openWindow('indexs1.html','html1')
+			}) 
+			$('.href').on('tap','.xxxd',function(){
+				mui.openWindow('indexs2.html','html2')
+			}) 
+			$('.href').on('tap','.gyhd',function(){
+				mui.openWindow('indexs3.html','html3')
+			}) 
+			$('.href').on('tap','.sjfx',function(){
+				mui.openWindow('indexs4.html','html4')
+			}) 
+			$('.offdom').on('tap','.setdom',function(){
+				mui.openWindow('indexsz.html','htmlsz')
+			}) 
+			$('.offdom').on('tap','.backdom',function(){
+				mui.plusReady(function(){
+					plus.runtime.quit()
+				})
+			}) 
+			mui('.wrapp').scroll()	
+		</script>
+	</body>
+</html>

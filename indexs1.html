@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/new_file.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/new_file2.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			body,
+			html {
+				position: relative;
+			}
+
+			.mui-icon-bars:before {
+				content: '\e563';
+				color: red;
+			}
+			.mui-col-sm-3 {
+				width: 33.333%;
+			}
+			.mui-grid-view.mui-grid-9 {
+			    margin: 0;
+			    padding: 0;
+			    border-top: 0px solid #eee;
+			    border-left: 0px solid #eee;
+			    background-color: #fff;
+				border-radius: 3vw;
+			}
+			.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+			    margin: 0;
+			    padding: 11px 15px;
+			    vertical-align: top;
+			    border-right: 0px solid #eee;
+			    border-bottom: 0px solid #eee;
+			}
+			.bigimg{
+				width: 60px;
+				height: 60px;
+				overflow: hidden;
+				margin-left: 50%;
+				transform: translate(-50%);
+			}
+			.smlimg{
+				width: 100%;
+			}
+			.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body {
+			    font-size: 15px;
+			    line-height: 18px;
+			    display: block;
+			    width: 100%;
+			    height: 15px;
+			    margin-top: 8px;
+			    text-overflow: ellipsis;
+			    color: #333;
+			}
+			.mui-backdrop {
+			    position: fixed;
+			    top: 0;
+			    right: 0;
+			    bottom: 0;
+			    left: 0;
+			    z-index: 99;
+			    background-color: rgba(0,0,0,.3);
+			}
+			.mui-btn-danger, .mui-btn-negative, .mui-btn-red {
+			    color: #fff;
+			    border: 0px solid #ff0000;
+			    background-color: #ff0000;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="p1">
+			<!-- 缩放式侧滑（类手机QQ） -->
+			<!-- 侧滑导航根容器 -->
+			<div class="mui-off-canvas-wrap mui-draggable mui-scalable" style="height: 100vh;">
+				<!-- 菜单容器 -->
+				<aside class="mui-off-canvas-left mui-transitioning" id="offCanvasSide">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll" style="width: 100%;height: 100vh;color: #fff;">
+							<div class="user" style="display: flex;justify-content: center;margin-top: 10%;flex-wrap: wrap;">
+								
+							</div>
+							<div class="href" style="margin-left: 15%;margin-top: 20%;line-height: 35px;">
+								<div class="home" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									首页
+								</div>
+								<div class="xxxd" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									学习心得
+								</div>
+								<div class="gyhd" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									公益活动
+								</div>
+								<div class="sjfx" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									数据分析
+								</div>
+							</div>
+							<div class="offdom" style="display: flex;color: red;width: 50%;margin-left: 30%;margin-top: 15%;font-weight: 600;">
+								<div class="setdom" style="width: 50%;">
+									设置
+								</div>
+								<div class="backdom" style="width: 50%;">
+									退出
+								</div>
+							</div>
+						</div>
+					</div>
+				</aside>
+				<!-- 主页面容器 -->
+				<div class="mui-inner-wrap mui-transitioning">
+					<!-- 主页面标题 -->
+					<header class="mui-bar mui-bar-nav" style="">
+						<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide"></a>
+						<h1 class="mui-title" style="font-size: 23px;font-weight: 600;color: red;">时代楷模</h1>
+					</header>
+					<div class="mui-content mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<div class="">
+								<div style="width: 100%;height: 50px;background-color: red;color: #fff;font-size: 20px;font-weight: 450;text-align: center;line-height: 50px;">
+									学习雷锋同志，弘扬雷锋精神
+								</div>
+								<div class="">
+									<div id="slider" class="mui-slider">
+										<div class="mui-slider-group mui-slider-loop loops">
+											<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+											<div class="mui-slider-item mui-slider-item-duplicate">
+												<a href="#">
+													<img src="">
+												</a>
+											</div>
+											<!-- 第一张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img src="">
+												</a>
+											</div>
+											<!-- 第二张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img src="">
+												</a>
+											</div>
+											<!-- 第三张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img src="">
+												</a>
+											</div>
+											<!-- 第四张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img src="">
+												</a>
+											</div>
+											<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+											<div class="mui-slider-item mui-slider-item-duplicate">
+												<a href="#">
+													<img src="">
+												</a>
+											</div>
+										</div>
+										<div class="mui-slider-indicator">
+											<div class="mui-indicator mui-active"></div>
+											<div class="mui-indicator"></div>
+											<div class="mui-indicator"></div>
+											<div class="mui-indicator"></div>
+										</div>
+									</div>
+								</div>
+								<div style="display: flex;align-items: center;background-color: #fff;width: 85%;transform: translate(-50%);margin-left: 50%;border-radius: 2vw;margin-top: 3%;">
+									<div style="flex: 3;font-size: 24px;border-right: 1px solid #000000;line-height: 32px;margin: 5vw;font-weight: 500;">
+										<div style="color: red;">
+											楷模
+										</div>
+										<div class="">
+											公告
+										</div>
+									</div>
+									<div style="flex: 12;">
+										<div class="">
+											2021年河北省“最美基层高校毕业生”先进事迹发布
+										</div>
+										<div style="font-size: 14px;">
+											河北省委宣传部、省人社厅在最美河北...
+										</div>
+									</div>
+									<div class="mui-icon mui-icon-arrowright" style="flex: 2;font-weight: 600;">
+										
+									</div>
+								</div>
+								<div class="" style="width: 85%;margin-left: 50%;transform: translate(-50%);margin-top: 3%;">
+									<ul class="mui-table-view mui-grid-view mui-grid-9">
+										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+											<a href="#">
+												<div class="bigimg"><img src="./images/kmlb.png" class="smlimg" ></div>
+												<div class="mui-media-body" style="color: red;">楷模列表</div>
+											</a>
+										</li>
+										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+											<a href="#">
+												<div class="bigimg"><img src="./images/yxgs.png" class="smlimg" ></div>
+												<div class="mui-media-body">英雄故事</div>
+											</a>
+										</li>
+										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+											<a href="#">
+												<div class="bigimg"><img src="./images/sbyx.png" class="smlimg" ></div>
+												<div class="mui-media-body">身边英雄</div>
+											</a>
+										</li>
+										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+											<a href="#">
+												<div class="bigimg"><img src="./images/wzjz.png" class="smlimg" ></div>
+												<div class="mui-media-body">物资捐赠</div>
+											</a>
+										</li>
+										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+											<a href="#">
+												<div class="bigimg"><img src="./images/qzxq.png" class="smlimg" ></div>
+												<div class="mui-media-body">数据分析</div>
+											</a>
+										</li>
+										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+											<a href="#">
+												<div class="bigimg"><img src="./images/more.png" class="smlimg" ></div>
+												<div class="mui-media-body">更多</div>
+											</a>
+										</li>
+									</ul>
+									
+								</div>
+								<div class="d4" style="width: 85%;margin-left: 50%;transform:translate(-50%);margin-top: 3%;">
+									<div style="display: flex;align-items: center;">
+										<div style="width: 5px;height: 30px;background-color: red;margin-right: 2vw;"></div>
+										<div>楷模列表</div>
+									</div>
+									<div class="kmlb">
+										
+									</div>
+									<button type="button" class="mui-btn mui-btn-red mui-btn-block blocks" style="margin-top: 5%;">更多内容</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="mui-off-canvas-backdrop"></div>
+				</div>
+			</div>
+		</div>
+		<div id="p2" style="width: 100%;height: 100vh;position: absolute;left: 0;top: 0;z-index: 100;display: none;">
+			<div class="loget1"style="position: absolute;top: 600px;left: 80px;color: red;font-size: 20px;z-index: 988;font-weight: 500;display: none;">
+				▲这里显示的是时代楷模服务项
+			</div>
+			<div class="loget2" style="position: absolute;top: 50px;z-index: 111;left: 13px;display: none;color: red;font-size: 20px;font-weight: 500;">
+				▲点击这里打开侧滑菜单
+			</div>
+			<div class="loget3" style="position: absolute;top: 85vh;z-index: 777;left: 50%;color: red;font-size: 20px;font-weight: 500;transform: translate(-50%,0);width: 60vw;display: none;">
+				<button type="button" class="mui-btn mui-btn-red mui-btn-block loget5" style="border-radius: 50vw;font-size: 25px;padding: 10px 0;">1/2 下一步</button>
+			</div>
+			<div class="loget4" style="position: absolute;top: 85vh;z-index: 777;left: 50%;color: red;font-size: 20px;font-weight: 500;transform: translate(-50%,0);width: 60vw;display: none;">
+				<button type="button" class="mui-btn mui-btn-red mui-btn-block loget6" style="border-radius: 50vw;font-size: 25px;padding: 10px 0;">2/2 完成</button>
+			</div>
+			<div class="mui-backdrop backp2" style="display: none;"></div>
+		</div>
+		<script type="text/javascript">
+			// localStorage.setItem('loget',false)
+			window.onload = function() {
+			    function tapbackp3(){
+			    }
+			    if(localStorage.getItem('loget') !== 'true') {
+			    	$('.loget1').show()
+			    	$('.loget3').show()
+					$('#p2').show()
+			    	backdrop = mui.createMask(tapbackp2)
+			    	backdrop.show()
+			    }
+				$('body').on('tap','.loget5',function(){
+					backp2 = mui.createMask(tapbackp3)
+					backdrop.close()
+					$('.loget1').hide()
+					$('.loget3').hide()
+					$('.loget2').show()
+					$('.loget4').show()
+					backp2.show()
+				})
+				$('body').on('tap','.loget6',function(){
+					backp2.close()
+					$('.loget2').hide()
+					$('.loget4').hide()
+					$('#p2').hide()
+					localStorage.setItem('loget',true)
+				})
+			    function tapbackp2(){
+			    }
+			}
+			mui.ajax(url + '/prod-api/api/building/banner/list', {
+				headers,
+				success: function(data) {
+					const arr = data.rows
+					list = ''
+					list += `<div class="mui-slider-item mui-slider-item-duplicate" style="height: 250;width: 100%;overflow: hidden;">
+								  <a href="#">
+									<img src="${myimg}${arr[3].imgUrl}" style="width: 100%;">
+								  </a>
+								</div>`
+					mui.each(arr, function(data, item) {
+						list += `<div class="mui-slider-item" style="height: 250px;width: 100%;overflow: hidden;">
+									  <a href="#">
+										<img src="${myimg}${item.imgUrl}" style="width: 100%;">
+									  </a>
+									</div>`
+					})
+					list += `<div class="mui-slider-item mui-slider-item-duplicate" style="height: 250;width: 100%;overflow: hidden;">
+								  <a href="#">
+									<img src="${myimg}${arr[0].imgUrl}" style="width: 100%;">
+								  </a>
+								</div>`
+					$('.loops').html(list)
+				}
+			})
+			mui('.mui-scroll-wrapper').scroll()
+			mui.ajax(url + '/prod-api/api/model/list', {
+				headers,
+				success: function(data) {
+					const arr = data.rows
+					list = ''
+					let err = 5
+					for(let i = 0; i < 5;i++){
+						list += `<div style="width: 100%;background-color: #fff;display: flex;margin-top: 3%;border-radius: 3vw;">
+										<div style="width: 25vw;height:30vw;padding: 2vw;overflow: hidden;">
+											<img src="${myimg}${arr[i].imgUrl}" style="width: 100%;height:100%;" >
+										</div>
+										<div style="width: 65%;overflow-wrap: break-word;display: flex;flex-wrap: wrap;align-items: center;font-size: 15px;">
+											<div class="mui-ellipsis" style="font-size: 18px;width: 100%;margin-top: 1%;">
+												${arr[i].title}
+											</div>
+											<div class="" style="width: 100%;">
+												楷模姓名：${arr[i].name}
+											</div>
+											<div class="mui-ellipsis-2" style="width: 100%;overflow-wrap: break-word;margin-bottom: 1%;" >
+												${arr[i].content}
+											</div>
+										</div>
+									</div>`
+					}
+					$('.kmlb').html(list)
+					mui('.d4').on('tap','.blocks',function(){
+						err += 5
+						list = ''
+						if(err<25){
+							for(let i = 0; i < err;i++){
+								list += `<div style="width: 100%;background-color: #fff;display: flex;margin-top: 3%;border-radius: 3vw;">
+												<div style="width: 25vw;height:30vw;padding: 2vw;overflow: hidden;">
+													<img src="${myimg}${arr[i].imgUrl}" style="width: 100%;height:100%;" >
+												</div>
+												<div style="width: 65%;overflow-wrap: break-word;display: flex;flex-wrap: wrap;align-items: center;font-size: 15px;">
+													<div class="mui-ellipsis" style="font-size: 18px;width: 100%;margin-top: 1%;">
+														${arr[i].title}
+													</div>
+													<div class="" style="width: 100%;">
+														楷模姓名：${arr[i].name}
+													</div>
+													<div class="mui-ellipsis-2" style="width: 100%;overflow-wrap: break-word;margin-bottom: 1%;" >
+														${arr[i].content}
+													</div>
+												</div>
+											</div>`
+								$('.kmlb').html(list)
+							}
+						}else{
+							$('.blocks').html('暂无更多了')
+							$('.blocks').prop('disabled',true)
+						}
+					})
+				}
+			})
+			mui.ajax(url + '/prod-api/api/common/user/getInfo', {
+				headers,
+				success: function(data) {
+					const arr = data.data
+					console.log(data);
+					list = ''
+					list += `<div class="" style="width: 100%;margin-left: 50%;">
+									<div class="" style="width: 25vw;height: 25vw;overflow: hidden;border-radius: 25vw;transform: translate(-50%);">
+										<img src="${myimg}${arr.avatar}" style="width: 100%;" >
+									</div>
+								</div>
+								<div class="" style="margin-top: 5%;">
+									${arr.nickName}
+								</div>`
+					$('.user').html(list)
+				}
+			})
+			//////////////
+			$('.href').on('tap','.home',function(){
+				mui.openWindow('indexs1.html','html1')
+			}) 
+			$('.href').on('tap','.xxxd',function(){
+				mui.openWindow('indexs2.html','html2')
+			}) 
+			$('.href').on('tap','.gyhd',function(){
+				mui.openWindow('indexs3.html','html3')
+			}) 
+			$('.href').on('tap','.sjfx',function(){
+				mui.openWindow('indexs4.html','html4')
+			}) 
+			$('.offdom').on('tap','.setdom',function(){
+				mui.openWindow('indexsz.html','htmlsz')
+			}) 
+			$('.offdom').on('tap','.backdom',function(){
+				mui.plusReady(function(){
+					plus.runtime.quit()
+				})
+			}) 
+		</script>
+	</body>
+</html>

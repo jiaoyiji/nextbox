@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/new_file.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/new_file2.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/echarts.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			body,
+			html {
+				position: relative;
+			}
+			.mui-icon-bars:before {
+				content: '\e563';
+				color: red;
+			}
+			.mui-btn-blue, .mui-btn-primary, input[type=submit] {
+			    color: #fff;
+			    border: 0px solid #ff0000;
+			    background-color: #ff0000;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
+			    background-color:  rgba(0,0,0,0);
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+			    color: #f00;
+			    border-bottom: 2px solid #f00;
+			    background: #fff;
+			}
+			.mui-control-item{
+				background-color: #fff;
+			}
+			.mui-btn-blue.mui-active:enabled, .mui-btn-blue:enabled:active, .mui-btn-primary.mui-active:enabled, .mui-btn-primary:enabled:active, input[type=submit].mui-active:enabled, input[type=submit]:enabled:active {
+			    color: #fff;
+			    border: 1px solid #f00;
+			    background-color: #f00;
+			}
+			.mui-popover .mui-popover-arrow:after {
+			    position: absolute;
+			    top: 19px;
+			    left: 0;
+			    width: 26px;
+			    height: 26px;
+			    content: ' ';
+			    -webkit-transform: rotate(45deg);
+			    transform: rotate(45deg);
+			    border-radius: 3px;
+			    background: #f7f7f7;
+			}
+			
+			input[type=text]{
+			    line-height: 21px;
+			    width: 70%;
+			    height: 40px;
+			    margin-bottom: 15px;
+			    padding: 10px 15px;
+			    -webkit-user-select: text;
+			    border: 1px solid rgba(0, 0, 0, 0);
+			    border-radius: 3px;
+			    outline: 0;
+				margin-left: 50%;
+				transform: translate(-50%,0%);
+			    background-color: rgba(0,0,0,0);
+			    -webkit-appearance: none;
+				border-bottom:1px solid #bcbcc2 ;
+			}
+			.backdrop {
+			    position: fixed;
+			    top: 0;
+			    right: 0;
+			    bottom: 0;
+			    left: 0;
+			    z-index: 10;
+			    background-color: rgba(0,0,0,.3);
+			}
+			.backdrp{
+				position: fixed;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				z-index: 10;
+				background-color: rgba(0,0,0,0);
+			}
+			.mui-table-view-cell>.mui-slider-left>.mui-btn:after, .mui-table-view-cell>.mui-slider-right>.mui-btn:after {
+			    position: absolute;
+			    z-index: -2;
+			    top: 0;
+			    width: 600%;
+			    height: 100%;
+			    content: '';
+			    background: inherit;
+			    margin-left: 600%;
+			}
+			.mui-table-view:before {
+			    position: absolute;
+			    right: 0;
+			    left: 0;
+			    height: 0px;
+			    content: '';
+			    -webkit-transform: scaleY(.5);
+			    transform: scaleY(.5);
+			    background-color: #c8c7cc;
+			    top: -1px;
+			}
+			.mui-table-view:after {
+			    position: absolute;
+			    right: 0;
+			    bottom: 0;
+			    left: 0;
+			    height: 0px;
+			    content: '';
+			    -webkit-transform: scaleY(.5);
+			    transform: scaleY(.5);
+			    background-color: #c8c7cc;
+			}
+			.mui-scroll {
+			    position: absolute;
+			    z-index: 100;
+			    width: 100%;
+			}
+			.big{
+				text-align: center;
+			}
+			.big1-2{
+				display: inline-block;
+				text-align: center;
+			}
+			.active{
+				background-color: #55ffff;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="p1" style="">
+			<!-- 缩放式侧滑（类手机QQ） -->
+			<!-- 侧滑导航根容器 -->
+			<div class="mui-off-canvas-wrap mui-draggable mui-scalable" style="height: 100vh;">
+				<!-- 菜单容器 -->
+				<aside class="mui-off-canvas-left mui-transitioning" id="offCanvasSide">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll" style="width: 100%;height: 100vh;color: #fff;">
+							<div class="user" style="display: flex;justify-content: center;margin-top: 10%;flex-wrap: wrap;">
+								
+							</div>
+							<div class="href" style="margin-left: 15%;margin-top: 20%;line-height: 35px;">
+								<div class="home" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									首页
+								</div>
+								<div class="xxxd" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									学习心得
+								</div>
+								<div class="gyhd" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									公益活动
+								</div>
+								<div class="sjfx" style="display: flex;align-items: center;">
+									<div style="width: 16px;height: 16px;background-color: #fff;margin-right: 2%;"></div>
+									数据分析
+								</div>
+							</div>
+							<div class="offdom" style="display: flex;color: red;width: 50%;margin-left: 30%;margin-top: 15%;font-weight: 600;">
+								<div class="setdom" style="width: 50%;">
+									设置
+								</div>
+								<div class="backdom" style="width: 50%;">
+									退出
+								</div>
+							</div>
+						</div>
+					</div>
+				</aside>
+				<!-- 主页面容器 -->
+				<div class="mui-inner-wrap mui-transitioning">
+					<div class="">
+						<!-- 主页面标题 -->
+						<header class="mui-bar mui-bar-nav header" id="studything" style="">
+							<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide"></a>
+							<h1 class="mui-title" style="font-size: 23px;font-weight: 600;text-align: center;">设置</h1>
+							<button type="button" class="mui-btn mui-btn-blue agesz" style="margin-left: 75vw;border-radius: 5vw;width: 12vw;">保存</button>
+						</header>
+						<div class="mui-content mui-scroll-wrapper wrapp">
+							<div class="mui-scroll" style="line-height: 50px;margin-top: 100px;font-size: 20px;">
+								<div class="big">
+									数据分析图设置
+								</div>
+								<div class="big">
+									新闻信息的评论数量
+								</div>
+								<div class="big">
+									<span class="column active" style="margin-right: 10vw;">条形图</span>
+									<span class="pile" style="margin-left: 4vw;">渐变堆积面积图</span>
+								</div>
+								<div class="big">
+									所有用户阅读数量变化趋势
+								</div>
+								<div class="big">
+									<span class="line active" style="margin-right: 10vw;"> 折线图 </span>
+									<span class="dot"> 散点图 </span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="mui-off-canvas-backdrop" style="z-index: 999;"></div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			// window.onload = function() {
+			    
+			// }
+			if(localStorage.getItem('columnss')){
+				console.log(localStorage.getItem('columnss'));
+				if(localStorage.getItem('columnss') === '1'){
+					$('.pile').siblings('.column').removeClass('active')
+					$('.column').siblings('.pile').addClass('active')
+				}else{
+					$('.column').siblings('.pile').removeClass('active')
+					$('.pile').siblings('.column').addClass('active')
+				}
+			}else{
+					$('.column').siblings('.pile').removeClass('active')
+					$('.pile').siblings('.column').addClass('active')
+			}
+			if(localStorage.getItem('liness')){
+				console.log(localStorage.getItem('columnss'));
+				if(localStorage.getItem('liness') === '1'){
+					$('.dot').siblings('.line').removeClass('active')
+					$('.line').siblings('.dot').addClass('active')
+				}else{
+					$('.line').siblings('.dot').removeClass('active')
+					$('.dot').siblings('.line').addClass('active')
+				}
+			}else{
+					$('.line').siblings('.dot').removeClass('active')
+					$('.dot').siblings('.line').addClass('active')
+			}
+			$('.mui-scroll').on('tap','.column',function(){
+				$('.column').siblings('.pile').removeClass('active')
+				$('.pile').siblings('.column').addClass('active')
+				let index = $(this).index()
+				$('.header').off('tap.first','.agesz')
+				$('.header').on('tap.first','.agesz',function(){
+					localStorage.setItem('columnss',index)
+				})
+			})
+			$('.mui-scroll').on('tap','.pile',function(){
+				$('.pile').siblings('.column').removeClass('active')
+				$('.column').siblings('.pile').addClass('active')
+				let index = $(this).index()
+				$('.header').off('tap.first','.agesz')
+				$('.header').on('tap.first','.agesz',function(){
+					localStorage.setItem('columnss',index)
+				})
+			})
+			$('.mui-scroll').on('tap','.line',function(){
+				$('.line').siblings('.dot').removeClass('active')
+				$('.dot').siblings('.line').addClass('active')
+				let index = $(this).index()
+				$('.header').off('tap.second','.agesz')
+				$('.header').on('tap.second','.agesz',function(){
+					localStorage.setItem('liness',index)
+				})
+			})
+			$('.mui-scroll').on('tap','.dot',function(){
+				$('.dot').siblings('.line').removeClass('active')
+				$('.line').siblings('.dot').addClass('active')
+				let index = $(this).index()
+				$('.header').off('tap.second','.agesz')
+				$('.header').on('tap.second','.agesz',function(){
+					localStorage.setItem('liness',index)
+				})
+			})
+			//////////////用户
+			function intnote(){
+				mui.ajax(url + '/prod-api/api/common/user/getInfo', {
+					headers,
+					success: function(data) {
+						const arr = data.data
+						const userId = data.data.userId
+						list = ''
+						list += `<div class="" style="width: 100%;margin-left: 50%;">
+										<div class="" style="width: 25vw;height: 25vw;overflow: hidden;border-radius: 25vw;transform: translate(-50%);">
+											<img src="${myimg}${arr.avatar}" style="width: 100%;" >
+										</div>
+									</div>
+									<div class="" style="margin-top: 5%;">
+										${arr.nickName}
+									</div>`
+						$('.user').html(list)
+					}
+				})
+			}
+			intnote()
+			//////////////侧导航跳转事件
+			$('.href').on('tap','.home',function(){
+				mui.openWindow('indexs1.html','html1')
+			}) 
+			$('.href').on('tap','.xxxd',function(){
+				mui.openWindow('indexs2.html','html2')
+			}) 
+			$('.href').on('tap','.gyhd',function(){
+				mui.openWindow('indexs3.html','html3')
+			}) 
+			$('.href').on('tap','.sjfx',function(){
+				mui.openWindow('indexs4.html','html4')
+			}) 
+			$('.offdom').on('tap','.setdom',function(){
+				mui.openWindow('indexsz.html','htmlsz')
+			}) 
+			$('.offdom').on('tap','.backdom',function(){
+				mui.plusReady(function(){
+					plus.runtime.quit()
+				})
+			}) 
+			mui('.wrapp').scroll()	
+		</script>
+	</body>
+</html>
